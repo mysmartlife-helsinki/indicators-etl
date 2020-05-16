@@ -39,6 +39,90 @@
 						</text>
 					</data>
 				</component>
+				<component name="getKivikko" library="text" uid="3" kind="16">
+					<properties/>
+					<view ltx="-15" lty="243" rbx="141" rby="443"/>
+					<data>
+						<root>
+							<header>
+								<namespaces>
+									<namespace/>
+									<namespace uid="http://www.altova.com/mapforce"/>
+								</namespaces>
+							</header>
+							<entry name="FileInstance" ns="1" expanded="1">
+								<entry name="document" ns="1" expanded="1">
+									<entry name="Rows" outkey="1" expanded="1">
+										<entry name="Päivämäärä" outkey="2"/>
+										<entry name="Arvo (kWh)" outkey="3"/>
+									</entry>
+								</entry>
+							</entry>
+						</root>
+						<text type="csv" inputinstance="https://www.helen.fi/aurinkopaneelit/aurinkosahko/kivikko/DownloadData/" encoding="1000" byteorder="1" byteordermark="0">
+							<settings separator=";" quote="&quot;" firstrownames="true" removeempty="true">
+								<names root="Text file" block="Rows">
+									<field0 name="Päivämäärä" type="dateTime"/>
+									<field1 name="Arvo (kWh)" type="string"/>
+								</names>
+							</settings>
+						</text>
+					</data>
+				</component>
+				<component name="getMessukeskus" library="text" uid="51" kind="16">
+					<properties/>
+					<view ltx="-14" lty="476" rbx="142" rby="676"/>
+					<data>
+						<root>
+							<header>
+								<namespaces>
+									<namespace/>
+									<namespace uid="http://www.altova.com/mapforce"/>
+								</namespaces>
+							</header>
+							<entry name="FileInstance" ns="1" expanded="1">
+								<entry name="document" ns="1" expanded="1">
+									<entry name="Rows" outkey="67" expanded="1">
+										<entry name="Päivämäärä" outkey="68"/>
+										<entry name="Arvo (kWh)" outkey="66"/>
+									</entry>
+								</entry>
+							</entry>
+						</root>
+						<text type="csv" inputinstance="https://www.helen.fi/aurinkopaneelit/aurinkosahko/kivikko/DownloadData/" encoding="1000" byteorder="1" byteordermark="0">
+							<settings separator=";" quote="&quot;" firstrownames="true" removeempty="true">
+								<names root="Text file" block="Rows">
+									<field0 name="Päivämäärä" type="dateTime"/>
+									<field1 name="Arvo (kWh)" type="string"/>
+								</names>
+							</settings>
+						</text>
+					</data>
+				</component>
+				<component name="constant" library="core" uid="34" kind="2">
+					<targets>
+						<datapoint pos="0" key="45"/>
+					</targets>
+					<view ltx="832" lty="553" rbx="1035" rby="570"/>
+					<data>
+						<constant value="Panel unit price:" datatype="string"/>
+					</data>
+				</component>
+				<component name="constant" library="core" uid="33" kind="2">
+					<targets>
+						<datapoint pos="0" key="44"/>
+					</targets>
+					<view ltx="832" lty="500" rbx="1015" rby="517"/>
+					<data>
+						<constant value="Sold panels:" datatype="string"/>
+					</data>
+				</component>
+				<component name="now" library="lang" uid="53" kind="5">
+					<targets>
+						<datapoint pos="0" key="81"/>
+					</targets>
+					<view ltx="995" lty="623" rbx="1077" rby="661"/>
+				</component>
 				<component name="Helen PV Summary" library="xlsx" uid="5" kind="26">
 					<properties XSLTDefaultOutput="1"/>
 					<view ltx="1263" lty="8" rbx="1522" rby="717"/>
@@ -452,6 +536,7 @@
 												<range id="1" start="1" count="1"/>
 												<range id="3" count="1"/>
 												<range id="4" count="1"/>
+												<range id="5"/>
 											</ranges>
 											<entry name="Row" expanded="1" displayselectionmode="selection">
 												<entry name="Cell" datatype="string"/>
@@ -660,6 +745,74 @@
 													</condition>
 												</entry>
 											</entry>
+											<entry name="Row" expanded="1">
+												<condition>
+													<expression>
+														<function name="is-range-id">
+															<expression>
+																<constant value="5" datatype="long"/>
+															</expression>
+														</function>
+													</expression>
+												</condition>
+												<entry name="Cell" displayselectionmode="selection" datatype="string"/>
+												<entry name="Cell" inpkey="85" datatype="string">
+													<condition>
+														<expression>
+															<function name="logical-and" library="core">
+																<expression>
+																	<function name="equal" library="core">
+																		<expression>
+																			<attribute name="n"/>
+																		</expression>
+																		<expression>
+																			<constant value="1" datatype="long"/>
+																		</expression>
+																	</function>
+																</expression>
+																<expression>
+																	<function name="equal" library="core">
+																		<expression>
+																			<attribute name="t"/>
+																		</expression>
+																		<expression>
+																			<constant value="s"/>
+																		</expression>
+																	</function>
+																</expression>
+															</function>
+														</expression>
+													</condition>
+												</entry>
+												<entry name="Cell" inpkey="87" datatype="string">
+													<condition>
+														<expression>
+															<function name="logical-and" library="core">
+																<expression>
+																	<function name="equal" library="core">
+																		<expression>
+																			<attribute name="n"/>
+																		</expression>
+																		<expression>
+																			<constant value="2" datatype="long"/>
+																		</expression>
+																	</function>
+																</expression>
+																<expression>
+																	<function name="equal" library="core">
+																		<expression>
+																			<attribute name="t"/>
+																		</expression>
+																		<expression>
+																			<constant value="s"/>
+																		</expression>
+																	</function>
+																</expression>
+															</function>
+														</expression>
+													</condition>
+												</entry>
+											</entry>
 										</entry>
 									</entry>
 								</entry>
@@ -667,72 +820,6 @@
 						</root>
 						<excel outputinstance="..\..\..\Desktop\helen_pv.xlsx"/>
 					</data>
-				</component>
-				<component name="getKivikko" library="text" uid="3" kind="16">
-					<properties/>
-					<view ltx="-15" lty="243" rbx="141" rby="443"/>
-					<data>
-						<root>
-							<header>
-								<namespaces>
-									<namespace/>
-									<namespace uid="http://www.altova.com/mapforce"/>
-								</namespaces>
-							</header>
-							<entry name="FileInstance" ns="1" expanded="1">
-								<entry name="document" ns="1" expanded="1">
-									<entry name="Rows" outkey="1" expanded="1">
-										<entry name="Päivämäärä" outkey="2"/>
-										<entry name="Arvo (kWh)" outkey="3"/>
-									</entry>
-								</entry>
-							</entry>
-						</root>
-						<text type="csv" inputinstance="https://www.helen.fi/aurinkopaneelit/aurinkosahko/kivikko/DownloadData/" encoding="1000" byteorder="1" byteordermark="0">
-							<settings separator=";" quote="&quot;" firstrownames="true" removeempty="true">
-								<names root="Text file" block="Rows">
-									<field0 name="Päivämäärä" type="dateTime"/>
-									<field1 name="Arvo (kWh)" type="string"/>
-								</names>
-							</settings>
-						</text>
-					</data>
-				</component>
-				<component name="getMessukeskus" library="text" uid="51" kind="16">
-					<properties/>
-					<view ltx="-14" lty="476" rbx="142" rby="676"/>
-					<data>
-						<root>
-							<header>
-								<namespaces>
-									<namespace/>
-									<namespace uid="http://www.altova.com/mapforce"/>
-								</namespaces>
-							</header>
-							<entry name="FileInstance" ns="1" expanded="1">
-								<entry name="document" ns="1" expanded="1">
-									<entry name="Rows" outkey="67" expanded="1">
-										<entry name="Päivämäärä" outkey="68"/>
-										<entry name="Arvo (kWh)" outkey="66"/>
-									</entry>
-								</entry>
-							</entry>
-						</root>
-						<text type="csv" inputinstance="https://www.helen.fi/aurinkopaneelit/aurinkosahko/kivikko/DownloadData/" encoding="1000" byteorder="1" byteordermark="0">
-							<settings separator=";" quote="&quot;" firstrownames="true" removeempty="true">
-								<names root="Text file" block="Rows">
-									<field0 name="Päivämäärä" type="dateTime"/>
-									<field1 name="Arvo (kWh)" type="string"/>
-								</names>
-							</settings>
-						</text>
-					</data>
-				</component>
-				<component name="now" library="lang" uid="53" kind="5">
-					<targets>
-						<datapoint pos="0" key="81"/>
-					</targets>
-					<view ltx="999" lty="620" rbx="1081" rby="658"/>
 				</component>
 				<component name="constant" library="core" uid="45" kind="2">
 					<targets>
@@ -743,22 +830,22 @@
 						<constant value="Last run:" datatype="string"/>
 					</data>
 				</component>
-				<component name="constant" library="core" uid="34" kind="2">
+				<component name="constant" library="core" uid="54" kind="2">
 					<targets>
-						<datapoint pos="0" key="45"/>
+						<datapoint pos="0" key="84"/>
 					</targets>
-					<view ltx="832" lty="553" rbx="1035" rby="570"/>
+					<view ltx="832" lty="682" rbx="993" rby="699"/>
 					<data>
-						<constant value="Panel unit price:" datatype="string"/>
+						<constant value="Version:" datatype="string"/>
 					</data>
 				</component>
-				<component name="constant" library="core" uid="33" kind="2">
+				<component name="constant" library="core" uid="55" kind="2">
 					<targets>
-						<datapoint pos="0" key="44"/>
+						<datapoint pos="0" key="86"/>
 					</targets>
-					<view ltx="832" lty="500" rbx="1015" rby="517"/>
+					<view ltx="832" lty="723" rbx="976" rby="740"/>
 					<data>
-						<constant value="Sold panels:" datatype="string"/>
+						<constant value="1.0.1" datatype="string"/>
 					</data>
 				</component>
 			</children>
@@ -828,6 +915,16 @@
 					<vertex vertexkey="66">
 						<edges>
 							<edge vertexkey="83"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="84">
+						<edges>
+							<edge vertexkey="85"/>
+						</edges>
+					</vertex>
+					<vertex vertexkey="86">
+						<edges>
+							<edge vertexkey="87"/>
 						</edges>
 					</vertex>
 				</vertices>
